@@ -91,7 +91,7 @@ namespace axStream
             this.ConnectionGB.Size = new System.Drawing.Size(240, 57);
             this.ConnectionGB.TabIndex = 2;
             this.ConnectionGB.TabStop = false;
-            this.ConnectionGB.Text = "Connection";
+            this.ConnectionGB.Text = "AirPlay Device";
             // 
             // IPTextBox
             // 
@@ -107,9 +107,9 @@ namespace axStream
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 13);
+            this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "IP (Airport Express):";
+            this.label1.Text = "IP Address:";
             // 
             // statusStrip
             // 
@@ -243,7 +243,7 @@ namespace axStream
             this.groupBox1.Size = new System.Drawing.Size(240, 58);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Input Devices";
+            this.groupBox1.Text = "Streaming Source";
             // 
             // inputDeviceList
             // 

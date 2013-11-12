@@ -163,10 +163,12 @@ namespace WaveLib
 				try
 				{
 					m_Finished = true;
-					if (m_WaveIn != IntPtr.Zero)
-						WaveNative.waveInReset(m_WaveIn);
-					WaitForAllBuffers();
-					m_Thread.Join();
+                    if (m_WaveIn != IntPtr.Zero)
+                    {
+                        WaveNative.waveInReset(m_WaveIn);
+                    }
+					//WaitForAllBuffers();
+					//m_Thread.Join();
 					m_DoneProc = null;
 					FreeBuffers();
 					if (m_WaveIn != IntPtr.Zero)
@@ -181,13 +183,20 @@ namespace WaveLib
 		}
 		private void ThreadProc()
 		{
-			while (!m_Finished)
-			{
-				Advance();
-				if (m_DoneProc != null && !m_Finished)
-					m_DoneProc(m_CurrentBuffer.Data, m_CurrentBuffer.Size);
-				m_CurrentBuffer.Record();
-			}
+            if (m_Finished == true)
+            {
+                Console.WriteLine("");
+            }
+            while (!m_Finished)
+            {
+                Advance();
+                if (m_DoneProc != null && !m_Finished)
+                    m_DoneProc(m_CurrentBuffer.Data, m_CurrentBuffer.Size);
+                if (m_CurrentBuffer != null)
+                {
+                    m_CurrentBuffer.Record();
+                }
+            }
 		}
 		private void AllocateBuffers(int bufferSize, int bufferCount)
 		{

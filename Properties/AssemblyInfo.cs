@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("axStream")]
 [assembly: AssemblyDescription("Program used to stream audio to an Apple Airport Express")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ovesens.NET")]
+[assembly: AssemblyCompany("ovesens.NET (mbrownnyc fork)")]
 [assembly: AssemblyProduct("axStream")]
-[assembly: AssemblyCopyright("Copyright ©  2008")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
