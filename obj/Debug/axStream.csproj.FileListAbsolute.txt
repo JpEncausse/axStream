@@ -1,0 +1,9 @@
+C:\Users\Matt\repos\axStream\bin\Debug\axStream.exe
+C:\Users\Matt\repos\axStream\bin\Debug\axStream.pdb
+C:\Users\Matt\repos\axStream\obj\Debug\axStream.csprojResolveAssemblyReference.cache
+C:\Users\Matt\repos\axStream\obj\Debug\axStream.AboutBox.resources
+C:\Users\Matt\repos\axStream\obj\Debug\axStream.Main.resources
+C:\Users\Matt\repos\axStream\obj\Debug\axStream.Properties.Resources.resources
+C:\Users\Matt\repos\axStream\obj\Debug\axStream.csproj.GenerateResource.Cache
+C:\Users\Matt\repos\axStream\obj\Debug\axStream.exe
+C:\Users\Matt\repos\axStream\obj\Debug\axStream.pdb
