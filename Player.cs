@@ -156,7 +156,7 @@ namespace axStream
 
                 //Get device here!!!
                 WaveLib.WaveFormat fmt = new WaveLib.WaveFormat(44100, 16, 2);
-                m_Recorder = new WaveLib.WaveInRecorder(deviceid, fmt, BufferSize, 64, new WaveLib.BufferDoneEventHandler(DataArrived));
+                m_Recorder = new WaveLib.WaveInRecorder(deviceid, fmt, BufferSize, 16, new WaveLib.BufferDoneEventHandler(DataArrived));
 
                 ConnectedEvent(EventArgs.Empty);
             }

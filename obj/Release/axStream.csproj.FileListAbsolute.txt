@@ -6,4 +6,3 @@ C:\Users\Matt\repos\axStream\obj\Release\axStream.Properties.Resources.resources
 C:\Users\Matt\repos\axStream\obj\Release\axStream.csproj.GenerateResource.Cache
 C:\Users\Matt\repos\axStream\obj\Release\axStream.exe
 C:\Users\Matt\repos\axStream\obj\Release\axStream.pdb
-C:\Users\Matt\repos\axStream\obj\Release\axStream.csprojResolveAssemblyReference.cache

@@ -24,34 +24,85 @@ namespace axStream
         private void Main_Load(object sender, EventArgs e)
         {
             //this.Hide();
+            bool donexml = false;
+            bool firstrun = false;
 
-            try
+            while (!donexml)
             {
-                DSInfo.ReadXml("info.xml");
-            }
-            catch (FileNotFoundException)
-            {
-                StreamWriter sw = File.CreateText("info.xml");
-                sw.WriteLine("<?xml version=\"1.0\" standalone=\"yes\"?>");
-                sw.WriteLine("<info>");
-                sw.WriteLine("  <ae>");
-                sw.WriteLine("      <ip>10.0.1.1</ip>");
-                sw.WriteLine("      <volume>-30</volume>");
-                sw.WriteLine("  </ae>");
-                sw.WriteLine("</info>\n");
-                sw.Close();
+                try
+                {
+                    DSInfo.ReadXml(Environment.GetEnvironmentVariable("appdata", EnvironmentVariableTarget.Process) + @"\axStream\info.xml");
+                    donexml = true;
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Directory.CreateDirectory(Environment.GetEnvironmentVariable("appdata", EnvironmentVariableTarget.Process) + @"\axStream");
+                }
+                catch (FileNotFoundException)
+                {
+                    StreamWriter sw = File.CreateText(Environment.GetEnvironmentVariable("appdata", EnvironmentVariableTarget.Process) + @"\axStream\\info.xml");
+                    sw.WriteLine("<?xml version=\"r1.0\" standalone=\"yes\"?>");
+                    sw.WriteLine("<info>");
+                    sw.WriteLine("  <ae>");
+                    sw.WriteLine("      <ip>10.0.1.1</ip>");
+                    sw.WriteLine("      <volume>-30</volume>");
+                    sw.WriteLine("      <systemaudiorouter>false</systemaudiorouter>");
+                    sw.WriteLine("  </ae>");
+                    sw.WriteLine("</info>\n");
+                    sw.Close();
 
-                DSInfo.ReadXml("info.xml");
+                    DSInfo.ReadXml(Environment.GetEnvironmentVariable("appdata", EnvironmentVariableTarget.Process) + @"\axStream\info.xml");
+                    donexml = true;
+                    firstrun = true;
+
+                }
             }
             IPTextBox.Text = DSInfo.Tables[0].Rows[0].ItemArray[0].ToString();
             VolumeBar.Value = int.Parse(DSInfo.Tables[0].Rows[0].ItemArray[1].ToString());
+            systemaudiorouter.Checked = bool.Parse(DSInfo.Tables[0].Rows[0].ItemArray[2].ToString());
+
+            //check if a device that can route system audio is present (check playback and recording devices for the follow (and require at least one in playback and one in recording: "what u hear", "wave out mix", "CABLE input" "stereo mix", "what u hear", "wave out mix", "CABLE input", "CABLE output")
+            int i = 0;
             foreach (string InputDeviceName in WaveLib.WaveNative.EnumInputDevices())
             {
                 inputDeviceList.Items.Add(InputDeviceName);
+                if (InputDeviceName.ToLower().Contains("waveout mix") || InputDeviceName.ToLower().Contains("what u hear") || InputDeviceName.ToLower().Contains("stereo mix") || InputDeviceName.ToLower().Contains("cable output"))
+                {
+                    i++;
+                }
             }
             if (inputDeviceList.Items.Count != 0)
             {
                 inputDeviceList.SelectedIndex = 0;
+            }
+
+            int q = 0;
+            foreach (string OutputDeviceName in WaveLib.WaveNative.EnumOutputDevices())
+            {
+                 if ( OutputDeviceName.ToLower().Contains("waveout mix") || OutputDeviceName.ToLower().Contains("what u hear") || OutputDeviceName.ToLower().Contains("stereo mix") || OutputDeviceName.ToLower().Contains("cable input") )
+                 {
+                     q++;
+                 }
+            }
+
+            bool systemaudiorouterpresent = false;
+            if (i > 0 && q > 0)
+            {
+                systemaudiorouterpresent = true;
+            }
+
+
+            //if so, verify vbaudio.checked.
+            //if it is, then enable the output to VB audio cable, then default to the VB audio cable input...
+            if (systemaudiorouter.Checked)
+            {
+                //Find the member of the inputDeviceList that matches the global device
+                //inputDeviceList.SelectedIndex =;
+            }
+
+            if (firstrun && !systemaudiorouterpresent)
+            {
+                MessageBox.Show("It doesn't appear that you have a sound device that can route all system audio over Airplay.  Would you like to visit a web page for assistance in finding a free-as-in-beer one (VB-Audio's Virtual Cable)?", "System audio routing unavailable", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
 
@@ -256,7 +307,7 @@ namespace axStream
             data[0] = IPTextBox.Text;
             data[1] = VolumeBar.Value.ToString();
             DSInfo.Tables[0].Rows[0].ItemArray = data;
-            DSInfo.WriteXml("info.xml");
+            DSInfo.WriteXml(Environment.GetEnvironmentVariable("appdata",EnvironmentVariableTarget.Process) + @"\axStream\info.xml");
 
             StopPlaying();
             notifyIcon.Visible = false;

@@ -53,6 +53,7 @@ namespace axStream
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.inputDeviceList = new System.Windows.Forms.ComboBox();
+            this.systemaudiorouter = new System.Windows.Forms.CheckBox();
             this.ConnectionGB.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.VolumeGB.SuspendLayout();
@@ -64,7 +65,7 @@ namespace axStream
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(13, 216);
+            this.StartButton.Location = new System.Drawing.Point(13, 243);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 0;
@@ -74,7 +75,7 @@ namespace axStream
             // 
             // StopButton
             // 
-            this.StopButton.Location = new System.Drawing.Point(94, 216);
+            this.StopButton.Location = new System.Drawing.Point(94, 243);
             this.StopButton.Name = "StopButton";
             this.StopButton.Size = new System.Drawing.Size(75, 23);
             this.StopButton.TabIndex = 1;
@@ -136,7 +137,7 @@ namespace axStream
             // VolumeGB
             // 
             this.VolumeGB.Controls.Add(this.VolumeBar);
-            this.VolumeGB.Location = new System.Drawing.Point(13, 140);
+            this.VolumeGB.Location = new System.Drawing.Point(13, 167);
             this.VolumeGB.Name = "VolumeGB";
             this.VolumeGB.Size = new System.Drawing.Size(240, 70);
             this.VolumeGB.TabIndex = 4;
@@ -227,7 +228,7 @@ namespace axStream
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(178, 216);
+            this.button1.Location = new System.Drawing.Point(178, 243);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -253,11 +254,22 @@ namespace axStream
             this.inputDeviceList.Size = new System.Drawing.Size(216, 21);
             this.inputDeviceList.TabIndex = 0;
             // 
+            // systemaudiorouter
+            // 
+            this.systemaudiorouter.AutoSize = true;
+            this.systemaudiorouter.Location = new System.Drawing.Point(22, 141);
+            this.systemaudiorouter.Name = "systemaudiorouter";
+            this.systemaudiorouter.Size = new System.Drawing.Size(184, 17);
+            this.systemaudiorouter.TabIndex = 7;
+            this.systemaudiorouter.Text = "Use system audio routing devices";
+            this.systemaudiorouter.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(267, 305);
+            this.Controls.Add(this.systemaudiorouter);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.VolumeGB);
@@ -314,6 +326,7 @@ namespace axStream
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox inputDeviceList;
+        private System.Windows.Forms.CheckBox systemaudiorouter;
     }
 }
 
